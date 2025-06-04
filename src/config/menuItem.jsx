@@ -6,6 +6,7 @@ import CategoryPageOutlet from "@/pages/dashbord/categories/CategoryPageOutlet";
 import NewCategory from "@/pages/dashbord/categories/NewCategory";
 import DashboardOverview from "@/pages/dashbord/DashboardOverview";
 import FeedbackDetail from "@/pages/dashbord/feedbacks/FeedbackDetail";
+import FeedbackPageOutlet from "@/pages/dashbord/feedbacks/FeedbackPageOutlet";
 import Feedbacks from "@/pages/dashbord/feedbacks/Feedbacks";
 import NewFeedback from "@/pages/dashbord/feedbacks/NewFeedback";
 import OrderDetail from "@/pages/dashbord/orders/OrderDetail";
@@ -20,6 +21,8 @@ import NewSubCategory from "@/pages/dashbord/subcategories/NewSubCategory";
 import SubCategories from "@/pages/dashbord/subcategories/SubCategories";
 import SubCategoryPageOutlet from "@/pages/dashbord/subcategories/SubCategoryPageOutlet";
 import Units from "@/pages/dashbord/units/Units";
+import Users from "@/pages/dashbord/users/Users"
+import UserPageOutlet from "@/pages/dashbord/users/UserPageOutlet";
 import {
   Boxes,
   LayoutGrid,
@@ -29,6 +32,7 @@ import {
   Combine,
   BookA,
   MessageCircle,
+  UsersRound,
 } from "lucide-react";
 
 const menuItems = [
@@ -171,11 +175,35 @@ const menuItems = [
       },
     ],
   },
+  // Users
+  {
+    name: "Users",
+    href: "/dashboard/users",
+    component: <UserPageOutlet />,
+    icon: UsersRound,
+    subMenuItems: [
+      {
+        name: "Users",
+        href: "/dashboard/users",
+        component: <Users />,
+      },
+      {
+        name: "User Detail",
+        href: ":userId",
+        component: <h1>user details</h1>,
+      },
+      {
+        name: "New User",
+        href: "new",
+        component: <h1>New User</h1>,
+      },
+    ],
+  },
   // Feedback
   {
     name: "Feedbacks",
     href: "/dashboard/feedbacks",
-    component: <OrderPageOutlet />,
+    component: <FeedbackPageOutlet />,
     icon: MessageCircle,
     subMenuItems: [
       {
