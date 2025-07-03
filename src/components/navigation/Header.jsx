@@ -13,22 +13,31 @@ import UserAvatar from "../common/UserAvatar";
 
 export default function Header({ showSidebar, setShowSidebar }) {
   return (
-    <div className="h-full justify-between  px-4 flex items-center ">
-      {/* Icon */}
+    <div className="h-full justify-between px-4 flex items-center">
+      {/* Hidden on mobile, visible on larger screens */}
       <button
         onClick={() => setShowSidebar(!showSidebar)}
-        className="text-green-600"
+        className="text-green-600 hidden md:block"
       >
         <AlignJustify />
       </button>
+
       {/* 3 Icons */}
       <div className="flex space-x-3 text-green-600">
         {/* <ThemeSwitcherBtn /> */}
-        {/* Notification componenet */}
+        {/* Notification component */}
         <Notifications />
         {/* user avatar */}
         <UserAvatar />
       </div>
+
+      {/* Visible on mobile, hidden on larger screens */}
+      <button
+        onClick={() => setShowSidebar(!showSidebar)}
+        className="text-green-600 md:hidden"
+      >
+        <AlignJustify />
+      </button>
     </div>
   );
 }
