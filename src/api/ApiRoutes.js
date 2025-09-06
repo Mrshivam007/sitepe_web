@@ -1,5 +1,5 @@
-// export const host = "http://localhost:4000";
-export const host = "https://grozzo.vercel.app";
+export const host = "http://localhost:4000";
+// export const host = "https://grozzo.vercel.app";
 
 // Categories
 export const createCategory = `${host}/api/v1/categories`;

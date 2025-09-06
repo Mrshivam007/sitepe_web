@@ -6,6 +6,7 @@ import AdminLogin from "@/pages/auth/AdminLogin";
 import AdminRegister from "@/pages/auth/AdminRegister";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 export default function AppRoutes() {
@@ -21,29 +22,32 @@ export default function AppRoutes() {
       const refreshToken = await localStorage.getItem("refreshToken");
 
       if (!accessToken || !refreshToken) {
-        // Only navigate to /auth if the user isn't already on an auth page
-        if (!location.pathname.startsWith("/auth")) {
+        if (!location.pathname.startsWith("/auth") && location.pathname !== "/privacy-policy") {
           navigate("/auth");
         }
       } else {
         dispatch(loginSuccess({ accessToken, refreshToken }));
         if (location.pathname.startsWith("/auth")) {
-          navigate("/dashboard"); // Redirect to the main app/dashboard if tokens are valid
+          navigate("/dashboard");
         }
       }
       setIsTokenSet(false);
     };
 
     checkAuthTokens();
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   if (isTokenSet) {
     return null;
   }
+
   return (
     <Routes>
       {/* Redirect from / to /dashboard */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+      {/* Privacy Policy (Public Route) */}
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
       {/* Auth routes */}
       <Route path="/auth" element={<AuthContainer />}>
